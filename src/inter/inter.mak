@@ -14,7 +14,7 @@
 
 .SUFFIXES: .c .ref
 
-CC	=	gcc
+CC	=	gcc -m32
 CFLAGS	=	-pipe -w -O2 -DNO_DEBUG
 AR	=	ar
 REFXCV	=	src/inter/refxcv	# refal2 + assembler for xcv
@@ -68,17 +68,17 @@ OBJECTS =		\
 
 ####### Implicit rules
 
-.ref.o: 
-	$(REFXCV)  
+.ref.o:
+	$(REFXCV)
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 ####### Build rules
 
 all: $(REFLIB)
 
 $(REFLIB): $(OBJECTS)
-	$(AR) rs $(REFLIB) $(OBJECTS) 
+	$(AR) rs $(REFLIB) $(OBJECTS)
 	$(AR) rs $(USERLIB)
 	-cp $(S)/mainrf.o $(OBJ)
 	-cp $(S)/rfdbg.o $(OBJ)

@@ -1,22 +1,22 @@
 #############################################################################
 # comp.mak
-# 	makefile for building of the compiler from refal-2 language, 
+# 	makefile for building of the compiler from refal-2 language,
 # 	result - bin/refal2 executable module.
 #       Version for UNIX ( FreeBSD, Linux )
 #
 # Copyright (C) Refal-2 Team
-# Author: Leonid Belous (aka BLF) 
+# Author: Leonid Belous (aka BLF)
 # E-mail: belous@ilt.kharkov.ua
 # Date: 28.05.2005
 #############################################################################
 
 ####### Compiler, tools and options
 
-.SUFFIXES: .c 
+.SUFFIXES: .c
 
-CC		=	gcc
+CC		=	gcc -m32
 CFLAGS		=	-pipe -w -O2 -DNO_DEBUG
-LINK		=	gcc
+LINK		=	gcc -m32
 
 S		=	src/comp
 BIN_DIR		=	bin
@@ -57,8 +57,8 @@ TARGET =	refal2
 
 all:	$(TARGET)
 
-$(TARGET): $(OBJECTS)  
-	$(LINK) $(LFLAGS) -o $(BIN_DIR)/$(TARGET) $(OBJECTS) 
+$(TARGET): $(OBJECTS)
+	$(LINK) $(LFLAGS) -o $(BIN_DIR)/$(TARGET) $(OBJECTS)
 
 ####### Dependences
 
