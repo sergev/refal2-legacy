@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "refal.def"
 #define NMBL sizeof(char)
-   
+
 void link();
 void putjs();
 void getjs();
@@ -18,6 +18,25 @@ struct spcs{
   int  spls;
   char *svpc;
 };
+
+static letter(s) unsigned char s; {
+   if( (s>='A' && s<='Z')  || /* A..Z     */
+       (s>='a' && s<='z') ||  /* a..z     */
+       (s>127 && s<176) ||    /* Ð..Ð¯Ð°..Ð¿ */
+       (s>223 && s<240) )     /* Ñ€..Ñ     */   return(1);
+   return(0);
+}
+
+static digit(s) char s; {
+   if( s>='0' && s<='9' )  return(1);
+   return(0);
+}
+
+static not(spcpls) int spcpls; {
+   if (spcpls == TRUE) return(FALSE);
+   return(TRUE);
+}
+
 spc(pspcsp,vpc,b)
 /* specifier interpreter */
 struct spcs *pspcsp;
@@ -111,27 +130,9 @@ SPCL:
  goto SPCNXT;
 } /*             end      spc          */
 
-static letter(s) unsigned char s; {
-   if( (s>='A' && s<='Z')  || /* A..Z     */
-       (s>='a' && s<='z') ||  /* a..z     */
-       (s>127 && s<176) ||    /* €..Ÿ ..¯ */
-       (s>223 && s<240) )     /* à..ï     */   return(1); 
-   return(0);
-}
-
-static digit(s) char s; {
-   if( s>='0' && s<='9' )  return(1);
-   return(0);
-}
-
-static not(spcpls) int spcpls; {
-   if (spcpls == TRUE) return(FALSE);
-   return(TRUE);
-}
-
 void link(x,y) linkcb *x,*y; {
    x->next = y;
-   y->prev = x; 
+   y->prev = x;
 }
 
 void putjs(jsp,ab1,ab2,anel,avpc)
@@ -167,7 +168,7 @@ void getjs(jsp,ab1,ab2,anel,avpc)
    *ab1 = jsp->jsb1;
    *ab2 = jsp->jsb2;
    *anel =jsp->jsnel;
-   *avpc= jsp->jsvpc; 
+   *avpc= jsp->jsvpc;
 }
 
 void putts(tsp,ax,ay,az)
@@ -208,16 +209,16 @@ int i;
 		/ two bytes without changes /
 		for ( i=0;i<2;i++ ){
 			*pt = *pf; pt++; pf++;
-		} 
+		}
 		/ body of macrodigit shift -> 16 /
 		for ( i=2;i<n;i++ ){
 			*(pt+2) = *pf; pt++; pf++;
 		}
-	}	
-	else {	
+	}
+	else {
 		for ( i=0;i<n;i++ ){
 			*pt = *pf; pt++; pf++;
-		} 
+		}
 	}
 }
 */

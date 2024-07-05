@@ -431,18 +431,18 @@ KEYS:
             || (strncmp(stmkey,"CTAPT",5)==0))
      pchosh("002 too many start-directive");
   else if ((strncmp(stmkey,"end",3)==0) || (strncmp(stmkey,"END",3)==0)
-            || (strncmp(stmkey,"”ˆHˆ˜",5)==0) ) {
+            || (strncmp(stmkey,"Ğ¤Ğ˜HĞ˜Ğ¨",5)==0) ) {
      if(prevlb[0]!='\0') sempty (prevlb,strlen(prevlb));
      again = 1;
      goto END_STATEMENT; }
   else if ((strncmp(stmkey,"entry",5)==0) || (strncmp(stmkey,"ENTRY",5)==0)
-            || (strncmp(stmkey,"BXO„H",5)==0) )
+            || (strncmp(stmkey,"BXOĞ”H",5)==0) )
      ilm(sentry);
   else if ((strncmp(stmkey,"extrn",5)==0) || (strncmp(stmkey,"EXTRN",5)==0)
-            || (strncmp(stmkey,"BHE˜H",5)==0) )
+            || (strncmp(stmkey,"BHEĞ¨H",5)==0) )
      ilm(sextrn);
   else if ((strncmp(stmkey,"empty",5)==0) || (strncmp(stmkey,"EMPTY",5)==0)
-            || (strncmp(stmkey,"“CTO",5)==0) )
+            || (strncmp(stmkey,"ĞŸĞ£CTO",5)==0) )
      il(sempty);
   else if ((strncmp(stmkey,"swap",4)==0) || (strncmp(stmkey,"SWAP",4)==0)
             || (strncmp(stmkey,"OBMEH",5)==0) )
@@ -454,7 +454,7 @@ KEYS:
      spdef(stmlbl,lbl_leng);
      specif(' '); }
   else if ((strncmp(stmkey,"equ",3)==0) || (strncmp(stmkey,"EQU",3)==0)
-           || (strncmp(stmkey,"KB",3)==0) )
+           || (strncmp(stmkey,"Ğ­KB",3)==0) )
      equ();
   else if (stmkey[0]==' ' ){
      trprev();
